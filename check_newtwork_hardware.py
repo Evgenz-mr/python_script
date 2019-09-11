@@ -27,7 +27,7 @@ class SSH:
 
 
 if __name__ == '__main__':
-    with SSH(hostname='10.10.10.254', username='usver', password='passwd', port=22) as ssh:  # noob@10.0.1.**
+    with SSH(hostname='10.10.10.254', username='usver', password='passwd', port=22) as ssh:  # usver@10.10.10.254
         out = ssh.exec_cmd('interface print')
         print(out)
         print(out, file=open('D:\\tasks\\log.txt', 'a'))  # и записью вывода в лог
