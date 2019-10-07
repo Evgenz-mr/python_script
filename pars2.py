@@ -9,4 +9,4 @@ for root, dir, files in os.walk(fw):
         with open(fw+"\\"+file) as log:
             for line in log.readlines():
                 if word in line:
-                    print(file + " ---> " + line)
+                    print(file+" ---> "+line)
