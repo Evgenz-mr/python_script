@@ -20,7 +20,7 @@ def rzn(a, b, ip_n): # a & b == >> vars for range, ip_n == >> adress 3 - oktets 
     st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y %H:%M:%S')
     print('\n' + ' ' * 4 +  '=' * 25 + '>>' + ' ' + 'Time is: ' + st + ' ' + '<<' + '=' * 25 + '\n' + ' ' * 63, file=fl)
     with open(os.devnull, "w") as limbo:
-        for n in range(a, b):
+        for n in range(a, b + 1):
             ip = f"{ip_n}.{n}" # example 192.168.145.{n} (n ==> range(0, 100))
             result = subprocess.Popen(["ping", "-c", "1", "-n", "-W", "2", ip],
                                       stdout=limbo, stderr=limbo).wait()
@@ -30,5 +30,5 @@ def rzn(a, b, ip_n): # a & b == >> vars for range, ip_n == >> adress 3 - oktets 
                 print(' ' * 4, ip, "active", file=fl)
 
 
-rzn(200, 255, ip_n="192.168.145")
+rzn(250, 254, ip_n="192.168.145")
 fl.close()
