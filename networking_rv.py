@@ -4,11 +4,10 @@
 #                       #
 # # # # # # # # # # # # #
 
-
+import subprocess
 import datetime
 import time
 import os
-import subprocess
 
 
 fname = "/opt/log_network.txt"
