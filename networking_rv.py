@@ -9,7 +9,7 @@ import datetime
 import time
 import os
 
-
+'''Check file in file_system'''
 fname = "/opt/log_network.txt"
 if not os.path.exists(fname) == True:
     tm = open(fname, 'w')
@@ -17,13 +17,14 @@ if not os.path.exists(fname) == True:
 
 fl = open(fname, 'a')
 
+'''Zone and region looking for monitoring'''
 zone = ['Ryazan', 'Moskow', 'All regions']
 rzn = ['рязань', 'Рязань', '1']
 msk = ['Москва', 'москва', '2']
-al = ['все', 'Все', 'всё', 'Всё', '3', 'all']
+all_region = ['все', 'Все', 'всё', 'Всё', '3', 'all']
 
-
-def net(a, b, ip_n, m=0): # a & b == >> vars for range, ip_n == >> adress 3 - oktets (IP), m - choose region
+'''Function network_monitoring'''
+def network_monitorig(a, b, ip_n, m=0): # a & b == >> vars for range, ip_n == >> adress 3 - oktets (IP), m - choose region
     global fl
     global zone
     ts = time.time()
@@ -36,7 +37,7 @@ def net(a, b, ip_n, m=0): # a & b == >> vars for range, ip_n == >> adress 3 - ok
             result = subprocess.Popen(["ping", "-c", "1", "-n", "-W", "2", ip],
                                       stdout=limbo, stderr=limbo).wait()
             if result:
-                print(' ' *  62, ip, "inactive", file=fl)
+                print(' ' * 62, ip, "inactive", file=fl)
             else:
                 print(' ' * 4, ip, "active", file=fl)
 
@@ -45,15 +46,13 @@ def net(a, b, ip_n, m=0): # a & b == >> vars for range, ip_n == >> adress 3 - ok
 choose_region = input("Выберите регион: Рязань(1), Москва(2), Все(3): ")
 
 if choose_region in rzn:
-    net(250, 254, ip_n="192.168.145", m=0)
+    network_monitorig(250, 254, ip_n="192.168.145", m=0)
     print("Выполнено!")
 elif choose_region in msk:
-    net(240, 250, ip_n="192.168.145", m=1)
+    network_monitorig(240, 250, ip_n="192.168.145", m=1)
     print("Выполнено!")
-elif choose_region in al:
-    net(240, 254, ip_n="192.168.145", m=2)
+elif choose_region in all_region:
+    network_monitorig(240, 254, ip_n="192.168.145", m=2)
     print("Выполнено!")
 else:
-    print(f"Указанный регион: >> {choose_region} << не определен в программе")
-
-fl.close()
+    print(f"Указанный регион: {choose_region} не определен в программе")
